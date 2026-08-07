@@ -1,5 +1,7 @@
 #include "lists.h"
 
+listint_t *reverse_list(listint_t *head);
+
 /**
  * reverse_list - reverses a linked list
  * @head: pointer to the head of the list
@@ -27,13 +29,12 @@ listint_t *reverse_list(listint_t *head)
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *slow, *fast, *rev_head, *tmp;
-	int result = 1;
+	listint_t *slow, *fast, *rev_head, *curr;
 
 	if (*head == NULL || (*head)->next == NULL)
 		return (1);
 
-	/* Find the middle of the list */
+	/* Find middle */
 	slow = *head;
 	fast = *head;
 	while (fast != NULL && fast->next != NULL)
@@ -42,21 +43,18 @@ int is_palindrome(listint_t **head)
 		fast = fast->next->next;
 	}
 
-	/* Reverse the second half */
+	/* Reverse second half */
 	rev_head = reverse_list(slow);
 
-	/* Compare first half with reversed second half */
-	tmp = *head;
+	/* Compare */
+	curr = *head;
 	while (rev_head != NULL)
 	{
-		if (tmp->n != rev_head->n)
-		{
-			result = 0;
-			break;
-		}
-		tmp = tmp->next;
+		if (curr->n != rev_head->n)
+			return (0);
+		curr = curr->next;
 		rev_head = rev_head->next;
 	}
 
-	return (result);
+	return (1);
 }
