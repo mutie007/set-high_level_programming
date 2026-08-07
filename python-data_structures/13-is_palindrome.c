@@ -1,11 +1,11 @@
 #include "lists.h"
 
 /**
- * reverse_list - reverses a linked list
- * @head: pointer to the head of the list
+ * reverse - reverses a linked list
+ * @head: pointer to the head
  * Return: pointer to the new head
  */
-static listint_t *reverse_list(listint_t *head)
+listint_t *reverse(listint_t *head)
 {
 	listint_t *prev = NULL;
 	listint_t *next = NULL;
@@ -23,18 +23,16 @@ static listint_t *reverse_list(listint_t *head)
 /**
  * is_palindrome - checks if a singly linked list is a palindrome
  * @head: double pointer to the head of the list
- * Return: 1 if it is a palindrome, 0 otherwise
+ * Return: 1 if palindrome, 0 otherwise
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *slow, *fast, *second_half, *first_half;
+	listint_t *slow = *head, *fast = *head, *rev, *tmp;
 
-	if (!head || !*head || !(*head)->next)
+	if (!*head || !(*head)->next)
 		return (1);
 
-	/* Find middle using slow/fast pointers */
-	slow = *head;
-	fast = *head;
+	/* Find middle */
 	while (fast && fast->next)
 	{
 		slow = slow->next;
@@ -42,23 +40,17 @@ int is_palindrome(listint_t **head)
 	}
 
 	/* Reverse second half */
-	second_half = reverse_list(slow);
-	first_half = *head;
+	rev = reverse(slow);
 
-	/* Compare the two halves */
-	while (second_half)
+	/* Compare */
+	tmp = *head;
+	while (rev)
 	{
-		if (first_half->n != second_half->n)
-		{
-			/* Restore list before returning failure */
-			reverse_list(second_half);
+		if (tmp->n != rev->n)
 			return (0);
-		}
-		first_half = first_half->next;
-		second_half = second_half->next;
+		tmp = tmp->next;
+		rev = rev->next;
 	}
 
-	/* Restore the original list */
-	reverse_list(slow);
 	return (1);
 }
