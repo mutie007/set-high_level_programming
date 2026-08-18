@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""Module that defines a Student class with serialization and deserialization."""
+"""Module that defines a Student class with serialization
+and deserialization.
+"""
 
 
 class Student:
@@ -27,7 +29,8 @@ class Student:
         Returns:
             dict: The dictionary representation of the student.
         """
-        if isinstance(attrs, list) and all(isinstance(a, str) for a in attrs):
+        if isinstance(attrs, list) and all(
+                isinstance(a, str) for a in attrs):
             return {k: v for k, v in self.__dict__.items() if k in attrs}
         return self.__dict__
 
