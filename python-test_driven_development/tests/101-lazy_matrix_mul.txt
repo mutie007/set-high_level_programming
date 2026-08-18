@@ -1,0 +1,62 @@
+================================
+How to use 101-lazy_matrix_mul.py
+================================
+
+This module defines a matrix multiplication function ``lazy_matrix_mul(m_a, m_b)``
+that uses NumPy.
+
+Usage
+=====
+
+``lazy_matrix_mul(...)`` returns the result of multiplying ``m_a`` by ``m_b``.
+
+::
+
+    >>> lazy_matrix_mul = __import__('101-lazy_matrix_mul').lazy_matrix_mul
+    >>> print(lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]]))
+    [[ 7 10]
+     [15 22]]
+    >>> print(lazy_matrix_mul([[1, 2]], [[3, 4], [5, 6]]))
+    [[13 16]]
+
+The function relies on NumPy, so the exceptions raised are those of NumPy.
+
+Error cases
+===========
+
+::
+
+    >>> lazy_matrix_mul([[1, 2], [3, 4]], [[5, 6], [7]])
+    Traceback (most recent call last):
+        ...
+    ValueError: shapes (2,2) and (2,) not aligned: 2 (dim 1) != 2 (dim 0)
+
+    >>> lazy_matrix_mul("not a list", [[1, 2]])
+    Traceback (most recent call last):
+        ...
+    TypeError: Object arrays are not currently supported
+
+    >>> lazy_matrix_mul([[1, 2]], "not a list")
+    Traceback (most recent call last):
+        ...
+    TypeError: Object arrays are not currently supported
+
+    >>> lazy_matrix_mul([[1, "2"], [3, 4]], [[1, 2], [3, 4]])
+    Traceback (most recent call last):
+        ...
+    TypeError: invalid data type for einsum
+
+    >>> lazy_matrix_mul([[1, 2], [3, 4]], [[1, "2"], [3, 4]])
+    Traceback (most recent call last):
+        ...
+    TypeError: invalid data type for einsum
+
+    >>> lazy_matrix_mul([[]], [[1]])
+    Traceback (most recent call last):
+        ...
+    ValueError: shapes (1,0) and (1,1) not aligned: 0 (dim 1) != 1 (dim 0)
+
+    >>> lazy_matrix_mul([[1]], [[]])
+    Traceback (most recent call last):
+        ...
+    ValueError: shapes (1,1) and (1,0) not aligned: 1 (dim 1) != 1 (dim 0)
