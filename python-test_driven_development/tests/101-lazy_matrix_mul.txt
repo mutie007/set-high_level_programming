@@ -40,12 +40,12 @@ Validation / multiplication errors (NumPy messages)
     >>> lazy_matrix_mul("not a list", [[1]])
     Traceback (most recent call last):
         ...
-    TypeError: Scalar operands are not allowed, use '*' instead
+    ValueError: Scalar operands are not allowed, use '*' instead
 
     >>> lazy_matrix_mul([[1]], "not a list")
     Traceback (most recent call last):
         ...
-    TypeError: Scalar operands are not allowed, use '*' instead
+    ValueError: Scalar operands are not allowed, use '*' instead
 
     >>> lazy_matrix_mul([1, 2], [[1]])
     Traceback (most recent call last):
