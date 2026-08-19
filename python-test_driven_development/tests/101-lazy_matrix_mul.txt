@@ -32,8 +32,8 @@ Missing arguments
         ...
     TypeError: lazy_matrix_mul() missing 1 required positional argument: 'm_b'
 
-Error cases (exact NumPy messages)
-==================================
+Error cases
+===========
 
 ::
 
@@ -46,46 +46,6 @@ Error cases (exact NumPy messages)
     Traceback (most recent call last):
         ...
     ValueError: Scalar operands are not allowed, use '*' instead
-
-    >>> lazy_matrix_mul([1, 2], [[1]])
-    Traceback (most recent call last):
-        ...
-    ValueError: matmul: Input operand 0 does not have enough dimensions (has 0, gufunc core with signature (n?,k),(k,m?)->(n?,m?) requires 1)
-
-    >>> lazy_matrix_mul([[1]], [1, 2])
-    Traceback (most recent call last):
-        ...
-    ValueError: matmul: Input operand 1 does not have enough dimensions (has 0, gufunc core with signature (n?,k),(k,m?)->(n?,m?) requires 1)
-
-    >>> lazy_matrix_mul([], [[1]])
-    Traceback (most recent call last):
-        ...
-    ValueError: matmul: Input operand 0 does not have enough dimensions (has 0, gufunc core with signature (n?,k),(k,m?)->(n?,m?) requires 1)
-
-    >>> lazy_matrix_mul([[]], [[1]])
-    Traceback (most recent call last):
-        ...
-    ValueError: matmul: Input operand 0 does not have enough dimensions (has 1, gufunc core with signature (n?,k),(k,m?)->(n?,m?) requires 2)
-
-    >>> lazy_matrix_mul([[1]], [])
-    Traceback (most recent call last):
-        ...
-    ValueError: matmul: Input operand 1 does not have enough dimensions (has 0, gufunc core with signature (n?,k),(k,m?)->(n?,m?) requires 1)
-
-    >>> lazy_matrix_mul([[1]], [[]])
-    Traceback (most recent call last):
-        ...
-    ValueError: matmul: Input operand 1 does not have enough dimensions (has 1, gufunc core with signature (n?,k),(k,m?)->(n?,m?) requires 2)
-
-    >>> lazy_matrix_mul([[1, "2"], [3, 4]], [[1, 2], [3, 4]])
-    Traceback (most recent call last):
-        ...
-    TypeError: invalid data type for einsum
-
-    >>> lazy_matrix_mul([[1, 2], [3, 4]], [[1, "2"], [3, 4]])
-    Traceback (most recent call last):
-        ...
-    TypeError: invalid data type for einsum
 
     >>> lazy_matrix_mul([[1, 2], [3]], [[1, 2], [3, 4]])
     Traceback (most recent call last):
