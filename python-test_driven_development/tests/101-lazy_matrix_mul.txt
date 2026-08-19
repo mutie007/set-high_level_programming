@@ -32,8 +32,8 @@ Missing arguments
         ...
     TypeError: lazy_matrix_mul() missing 1 required positional argument: 'm_b'
 
-Validation / multiplication errors (NumPy messages)
-===================================================
+Error cases (exact NumPy messages)
+==================================
 
 ::
 
