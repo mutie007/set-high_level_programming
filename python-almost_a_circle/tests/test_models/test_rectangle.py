@@ -3,6 +3,8 @@
 import unittest
 from models.rectangle import Rectangle
 from models.base import Base
+import io
+from contextlib import redirect_stdout
 
 
 class TestRectangle(unittest.TestCase):
@@ -52,6 +54,27 @@ class TestRectangle(unittest.TestCase):
         r = Rectangle(4, 6, 2, 1, 12)
         self.assertEqual(str(r), "[Rectangle] (12) 2/1 - 4/6")
 
+    def test_display_without_x_y(self):
+        """Test of display() without x and y exists"""
+        r = Rectangle(2, 3)
+        with redirect_stdout(io.StringIO()) as f:
+            r.display()
+        self.assertEqual(f.getvalue(), "##\n##\n##\n")
+
+    def test_display_without_y(self):
+        """Test of display() without y exists"""
+        r = Rectangle(2, 3, 2)
+        with redirect_stdout(io.StringIO()) as f:
+            r.display()
+        self.assertEqual(f.getvalue(), "  ##\n  ##\n  ##\n")
+
+    def test_display(self):
+        """Test of display() exists"""
+        r = Rectangle(2, 3, 2, 2)
+        with redirect_stdout(io.StringIO()) as f:
+            r.display()
+        self.assertEqual(f.getvalue(), "\n\n  ##\n  ##\n  ##\n")
+
     def test_to_dictionary(self):
         r = Rectangle(10, 2, 1, 9, 1)
         d = r.to_dictionary()
@@ -95,43 +118,23 @@ class TestRectangle(unittest.TestCase):
         r = Rectangle.create(**{'id': 89, 'width': 1, 'height': 2, 'x': 3, 'y': 4})
         self.assertEqual(r.y, 4)
 
-    def test_save_load(self):
+    def test_save_to_file_none(self):
+        Rectangle.save_to_file(None)
+        list_r = Rectangle.load_from_file()
+        self.assertEqual(list_r, [])
+
+    def test_save_to_file_empty_list(self):
+        """Test of Rectangle.save_to_file([]) exists"""
+        Rectangle.save_to_file([])
+        list_r = Rectangle.load_from_file()
+        self.assertEqual(list_r, [])
+
+    def test_save_to_file(self):
         r1 = Rectangle(10, 7, 2, 8)
         Rectangle.save_to_file([r1])
         list_r = Rectangle.load_from_file()
         self.assertEqual(str(r1), str(list_r[0]))
 
-        Rectangle.save_to_file(None)
-        list_r = Rectangle.load_from_file()
-        self.assertEqual(list_r, [])
-
-        Rectangle.save_to_file([])
-        list_r = Rectangle.load_from_file()
-        self.assertEqual(list_r, [])
-
 
 if __name__ == "__main__":
     unittest.main()
-
-
-    def test_display_without_x_y(self):
-        """Test display without x and y"""
-        r = Rectangle(2, 3)
-        # Just check that it runs without error
-        r.display()
-
-    def test_display_without_y(self):
-        """Test display without y"""
-        r = Rectangle(2, 3, 2)
-        r.display()
-
-    def test_display(self):
-        """Test display with x and y"""
-        r = Rectangle(2, 3, 2, 2)
-        r.display()
-
-    def test_save_to_file_empty_list(self):
-        """Test save_to_file with empty list"""
-        Rectangle.save_to_file([])
-        list_r = Rectangle.load_from_file()
-        self.assertEqual(list_r, [])

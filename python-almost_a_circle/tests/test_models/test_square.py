@@ -78,27 +78,23 @@ class TestSquare(unittest.TestCase):
         s = Square.create(**{'id': 89, 'size': 1, 'x': 2, 'y': 3})
         self.assertEqual(s.y, 3)
 
-    def test_save_load(self):
+    def test_save_to_file_none(self):
+        Square.save_to_file(None)
+        list_s = Square.load_from_file()
+        self.assertEqual(list_s, [])
+
+    def test_save_to_file_empty_list(self):
+        """Test of Square.save_to_file([]) exists"""
+        Square.save_to_file([])
+        list_s = Square.load_from_file()
+        self.assertEqual(list_s, [])
+
+    def test_save_to_file(self):
         s1 = Square(5)
         Square.save_to_file([s1])
         list_s = Square.load_from_file()
         self.assertEqual(str(s1), str(list_s[0]))
 
-        Square.save_to_file(None)
-        list_s = Square.load_from_file()
-        self.assertEqual(list_s, [])
-
-        Square.save_to_file([])
-        list_s = Square.load_from_file()
-        self.assertEqual(list_s, [])
-
 
 if __name__ == "__main__":
     unittest.main()
-
-
-    def test_save_to_file_empty_list(self):
-        """Test save_to_file with empty list"""
-        Square.save_to_file([])
-        list_s = Square.load_from_file()
-        self.assertEqual(list_s, [])
