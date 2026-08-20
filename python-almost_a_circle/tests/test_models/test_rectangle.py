@@ -145,3 +145,10 @@ if __name__ == "__main__":
         Rectangle.save_to_file(None)
         result = Rectangle.load_from_file()
         self.assertEqual(result, [])
+
+
+    def test_save_to_file_none(self):
+        """Test of Rectangle.save_to_file(None) exists"""
+        Rectangle.save_to_file(None)
+        result = Rectangle.load_from_file()
+        self.assertEqual(result, [])

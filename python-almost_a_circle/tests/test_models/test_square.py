@@ -112,3 +112,10 @@ if __name__ == "__main__":
         Square.save_to_file(None)
         result = Square.load_from_file()
         self.assertEqual(result, [])
+
+
+    def test_save_to_file_none(self):
+        """Test of Square.save_to_file(None) exists"""
+        Square.save_to_file(None)
+        result = Square.load_from_file()
+        self.assertEqual(result, [])
