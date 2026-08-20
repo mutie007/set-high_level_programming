@@ -95,10 +95,12 @@ class Rectangle(Base):
     def display(self):
         """
         Prints in stdout the Rectangle instance with the character #.
-        Does not handle x and y.
+        Takes care of x and y offsets.
         """
-        for i in range(self.height):
-            print("#" * self.width)
+        for _ in range(self.y):
+            print()
+        for _ in range(self.height):
+            print(" " * self.x + "#" * self.width)
 
     def __str__(self):
         """
