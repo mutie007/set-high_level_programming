@@ -96,7 +96,8 @@ class Base:
         Returns a list of instances from a JSON file.
 
         Returns:
-            list: List of instances of cls, or empty list if file doesn't exist.
+            list: List of instances of cls, or empty list if file
+                  doesn't exist.
         """
         filename = cls.__name__ + ".json"
         try:
@@ -132,7 +133,8 @@ class Base:
         Deserializes instances from a CSV file.
 
         Returns:
-            list: List of instances of cls, or empty list if file doesn't exist.
+            list: List of instances of cls, or empty list if file
+                  doesn't exist.
         """
         filename = cls.__name__ + ".csv"
         try:
