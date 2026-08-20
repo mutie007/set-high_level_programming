@@ -95,3 +95,10 @@ class TestSquare(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+    def test_save_to_file_empty_list(self):
+        """Test save_to_file with empty list"""
+        Square.save_to_file([])
+        list_s = Square.load_from_file()
+        self.assertEqual(list_s, [])

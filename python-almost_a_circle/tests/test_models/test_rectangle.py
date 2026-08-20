@@ -112,3 +112,26 @@ class TestRectangle(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+    def test_display_without_x_y(self):
+        """Test display without x and y"""
+        r = Rectangle(2, 3)
+        # Just check that it runs without error
+        r.display()
+
+    def test_display_without_y(self):
+        """Test display without y"""
+        r = Rectangle(2, 3, 2)
+        r.display()
+
+    def test_display(self):
+        """Test display with x and y"""
+        r = Rectangle(2, 3, 2, 2)
+        r.display()
+
+    def test_save_to_file_empty_list(self):
+        """Test save_to_file with empty list"""
+        Rectangle.save_to_file([])
+        list_r = Rectangle.load_from_file()
+        self.assertEqual(list_r, [])
