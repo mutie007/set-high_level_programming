@@ -3,12 +3,11 @@
 
 
 def find_peak(list_of_integers):
-    """Return a peak element from list_of_integers."""
+    """Return a peak from list_of_integers with O(log n) complexity."""
     if not list_of_integers:
         return None
 
-    left = 0
-    right = len(list_of_integers) - 1
+    left, right = 0, len(list_of_integers) - 1
 
     while left < right:
         mid = (left + right) // 2
