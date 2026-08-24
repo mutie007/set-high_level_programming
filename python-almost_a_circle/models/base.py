@@ -66,6 +66,7 @@ class Base:
         turt.pensize(3)
         turt.shape("turtle")
 
+        # Draw rectangles in white
         turt.color("#ffffff")
         for rect in list_rectangles:
             turt.showturtle()
@@ -79,6 +80,7 @@ class Base:
                 turt.left(90)
             turt.hideturtle()
 
+        # Draw squares in light blue
         turt.color("#b5e3d8")
         for sq in list_squares:
             turt.showturtle()
